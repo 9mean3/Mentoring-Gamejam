@@ -14,7 +14,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
                 _instance = FindObjectOfType<T>();
                 if (_instance == null)
                 {
-                    Debug.LogError($"이거 없다");
+                    Debug.LogError($"이거 없다 클낫다");
                 }
             }
             return _instance;
@@ -23,6 +23,9 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
     private void OnDisable()
     {
-        _instance = null;
+        if (_instance == this)
+        {
+            _instance = null;
+        }
     }
 }

@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Jump.Invoke();
+            Jump?.Invoke();
         }
     }
 }
