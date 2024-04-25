@@ -1,0 +1,104 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "387976bc-f1aa-496a-9408-fd649fed26aa",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "393b4633-8240-4e45-98a6-fc318ef83939",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "PassThrough",
+                    "id": "10337fdc-3845-419d-92f6-832df1596f07",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fbb277ba-1cbe-4009-86f0-3bbfdf0011fa",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouseControls",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "f18404c4-20c2-4587-8ba6-bebe469b81bf",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "e056cc8f-2872-4d1b-8b4a-6cff88cdb5a1",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouseControls",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "531eb223-0b31-4fff-9e79-7ed0aa8f73b9",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouseControls",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "7ee3c558-6d3c-4aa7-987e-eb22acd29902",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouseControls",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "296cbfed-0096-4167-9f92-b80cc9284e51",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyMouseControls",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "KeyMouseControls",
+            "bindingGroup": "KeyMouseControls",
+            "devices": []
+        }
+    ]
+}
