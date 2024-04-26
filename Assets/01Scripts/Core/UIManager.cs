@@ -16,6 +16,11 @@ public class UIManager : MonoSingleton<UIManager>
     public FBUIEnum CurrentEnum { get { return _currentEnum; } }
     public event Action<FBUIEnum> OnChangeState;
 
+    private void Start()
+    {
+        ChangeEnum(FBUIEnum.Start);
+    }
+
     public void ChangeEnum(FBUIEnum nextEnum)
     {
         _currentEnum = nextEnum;
