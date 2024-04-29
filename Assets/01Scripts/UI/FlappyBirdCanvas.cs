@@ -59,7 +59,7 @@ public class FlappyBirdCanvas : MonoBehaviour
 
     private void OnDisable()
     {
-        UIManager.Instance.OnChangeState -= SetUI;
+            //UIManager.Instance.OnChangeState -= SetUI;
         _playerInput.Jump -= ReStartGame;
         _playerInput.Jump -= StartGame;
     }

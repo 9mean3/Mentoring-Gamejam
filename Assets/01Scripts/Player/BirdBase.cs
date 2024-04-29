@@ -65,8 +65,6 @@ public class BirdBase : MonoBehaviour
 
     protected virtual void Jump()
     {
-        Debug.Log("PlayerJumpEvent");
-
         _rb.velocity = new Vector2(_rb.velocity.x, 0);
         _rb.velocity += Vector2.up * _jumpPower;
     }
@@ -79,7 +77,7 @@ public class BirdBase : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        UIManager.Instance.OnChangeState -= OnUIChanged;
+            //UIManager.Instance.OnChangeState -= OnUIChanged;
         _playerInput.Jump -= Jump;
         OnDie -= Die;
     }

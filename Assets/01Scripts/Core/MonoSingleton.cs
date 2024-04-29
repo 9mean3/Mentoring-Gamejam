@@ -21,11 +21,11 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+/*    private void OnDisable()
     {
         if (_instance == this)
         {
             _instance = null;
         }
-    }
+    }*/
 }
