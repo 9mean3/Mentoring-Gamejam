@@ -6,7 +6,7 @@ public abstract class PipeBossState : MonoBehaviour
 {
     protected PipeBoss _pipeBoss;
     protected PipeBossState _nextState;
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         if(!transform.root.TryGetComponent<PipeBoss>(out _pipeBoss))
         {

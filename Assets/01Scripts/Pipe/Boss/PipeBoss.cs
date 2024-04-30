@@ -9,7 +9,7 @@ public enum BossMode
 
 public class PipeBoss : MonoBehaviour
 {
-    [HideInInspector] public BossMode CurrentBossMode { get; private set; }
+    [HideInInspector] public BossMode CurrentBossMode { get; private set; } = 0;
     [HideInInspector] public PipeBossState IdleState;
     [HideInInspector] public List<PipeBossState> States = new List<PipeBossState>();
     private PipeBossState _currentState;
@@ -38,6 +38,7 @@ public class PipeBoss : MonoBehaviour
     private void Update()
     {
         _currentState.UpdateState();
+        Debug.Log(_currentState.name);
     }
 
     public void ChangeState(PipeBossState nextState)

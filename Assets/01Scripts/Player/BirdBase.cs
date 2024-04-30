@@ -46,6 +46,7 @@ public class BirdBase : MonoBehaviour
                 }
                 break;
             case FBUIEnum.Game:
+            case FBUIEnum.Boss:
                 {
                     _idling = false;
                     _playerInput.Jump += Jump;

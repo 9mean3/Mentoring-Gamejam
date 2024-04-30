@@ -7,6 +7,7 @@ public enum FBUIEnum
 {
     Start,
     Game,
+    Boss,
     End,
 }
 

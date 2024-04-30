@@ -9,6 +9,7 @@ public class PipeBossIdleState : PipeBossState
     public override void EnterState()
     {
         Debug.Log("Idle");
+        _curTime = 0;
     }
 
     public override void UpdateState()

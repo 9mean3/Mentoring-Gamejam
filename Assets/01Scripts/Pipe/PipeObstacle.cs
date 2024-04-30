@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PipeObstacle : PoolableMono
 {
+    private bool isScored = false;
+
     public override void Reset()
     {
         base.Reset();
@@ -16,6 +18,12 @@ public class PipeObstacle : PoolableMono
         if(transform.position.x < -20)
         {
             PipeObstacleManager.Instance.PushPipe(this);
+        }
+
+        if(transform.position.x < GameManager.Instance.Player.transform.position.x && !isScored)
+        {
+            isScored = true;
+            GameManager.Instance.AddScore();
         }
     }
 }

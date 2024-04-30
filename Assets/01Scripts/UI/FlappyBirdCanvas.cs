@@ -27,6 +27,7 @@ public class FlappyBirdCanvas : MonoBehaviour
                 }
                 break;
             case FBUIEnum.Game:
+            case FBUIEnum.Boss:
                 {
                     _startPanel.SetActive(false);
                     _endPanel.SetActive(false);
@@ -48,7 +49,7 @@ public class FlappyBirdCanvas : MonoBehaviour
 
     private void StartGame()
     {
-        UIManager.Instance.ChangeEnum(FBUIEnum.Game);
+        UIManager.Instance.ChangeEnum(FBUIEnum.Boss); /////////// 이거 꼭 바꿔라 그렇지 않으면 너는 죽는다
     }
 
     private void ReStartGame()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PipeObstacleManager : MonoSingleton<PipeObstacleManager>
 {
-    public bool Spawnable { get; private set; } = false;
+    public bool Spawnable = false;
     [SerializeField] private float _spawnYRange;
     [SerializeField] private float _spawnTerm;
 
@@ -30,6 +30,12 @@ public class PipeObstacleManager : MonoSingleton<PipeObstacleManager>
                 {
                     Spawnable = true;
                     StartCoroutine(SpawningPipeObstacle());
+                }
+                break;
+            case FBUIEnum.Boss:
+                {
+                    Spawnable = false;
+                    StopAllCoroutines();
                 }
                 break;
             case FBUIEnum.End:
