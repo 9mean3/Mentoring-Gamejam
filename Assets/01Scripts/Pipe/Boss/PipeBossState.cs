@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,12 +23,17 @@ public abstract class PipeBossState : MonoBehaviour
         _nextState = _pipeBoss.IdleState;
     }
 
-    public abstract void EnterState();
+    public virtual void EnterState()
+    {
+        _pipeList.Clear();
+    }
 
     public abstract void UpdateState();
 
     public virtual void ExitState()
     {
+        Debug.Log(DOTween.KillAll());
+
         foreach (var pipe in _pipeList)
         {
             PoolManager.Instance.Push(pipe);

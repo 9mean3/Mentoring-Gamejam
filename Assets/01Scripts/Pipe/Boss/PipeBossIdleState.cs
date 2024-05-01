@@ -25,9 +25,9 @@ public class PipeBossIdleState : PipeBossState
             else
             {
                 r = _pipeBoss.CurrentPatternIndex++;
-                if(r >= _pipeBoss.States.Count)
+                if(r >= _pipeBoss.States.Count - 1)
                 {
-                    r = 0;
+                    _pipeBoss.CurrentPatternIndex = 0;
                 }
             }
 

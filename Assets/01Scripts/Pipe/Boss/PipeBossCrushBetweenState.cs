@@ -16,6 +16,8 @@ public class PipeBossCrushBetweenState : PipeBossState
     [SerializeField] float _nextPipeSpawnTime;
     public override void EnterState()
     {
+        base.EnterState();
+
         StartCoroutine(SpawnPipes());
     }
 
@@ -41,10 +43,9 @@ public class PipeBossCrushBetweenState : PipeBossState
 
 
             Sequence seqq = DOTween.Sequence();
-            if (i >= _spawnCount)
+            if (i >= _spawnCount - 1)
             {
                 rightPipe.transform.DOMoveY(_destroyTransform.position.y, _moveDuration).SetEase(Ease.Linear).OnComplete(() => { _pipeBoss.ChangeState(_nextState); });
-                break;
             }
             else
             {
@@ -60,6 +61,7 @@ public class PipeBossCrushBetweenState : PipeBossState
 
     public override void ExitState()
     {
+        base.ExitState();
     }
 
     public override void UpdateState()

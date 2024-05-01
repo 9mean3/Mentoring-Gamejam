@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PipeBossVerticalAttackTogetherState : PipeBossDecidedPostionState
 {
-    private bool _isAttack;
+    private bool _isAttacked;
+    private bool _isArrived;
     private float _currentTime;
 
     [Header("Dotween")]
@@ -13,7 +14,10 @@ public class PipeBossVerticalAttackTogetherState : PipeBossDecidedPostionState
 
     public override void EnterState()
     {
-        _isAttack = false;
+        base.EnterState();
+
+        _isAttacked = false;
+        _isArrived = false;
         _currentTime = 0;
 
         foreach (var trm in _pipeTransforms)
@@ -30,18 +34,18 @@ public class PipeBossVerticalAttackTogetherState : PipeBossDecidedPostionState
     public override void UpdateState()
     {
         _currentTime += Time.deltaTime;
-        if(_currentTime >= _prepareTime && !_isAttack)
+        if(_currentTime >= _prepareTime && !_isAttacked)
         {
-            _isAttack = true;
+            _isAttacked = true;
             foreach (var pipe in _pipeList)
             {
-                Debug.Log("aPPP");
                 pipe.transform.DOMoveX(-11, _duration / 2).SetEase(Ease.InBack);
             }
         }
         
-        if(_currentTime >= _prepareTime + _attackingTime - _duration)
+        if(_currentTime >= _prepareTime + _attackingTime - _duration && !_isArrived)
         {
+            _isArrived = true;
             foreach (var pipe in _pipeList)
             {
                 pipe.transform.DOMoveX(-40, _duration);
@@ -56,9 +60,6 @@ public class PipeBossVerticalAttackTogetherState : PipeBossDecidedPostionState
 
     public override void ExitState()
     {
-        foreach (var pipe in _pipeList)
-        {
-            PoolManager.Instance.Push(pipe);
-        }
+        base.ExitState();
     }
 }

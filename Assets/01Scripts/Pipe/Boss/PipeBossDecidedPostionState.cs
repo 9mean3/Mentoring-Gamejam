@@ -8,10 +8,6 @@ public class PipeBossDecidedPostionState : PipeBossState
     [SerializeField] protected float _prepareTime;
     [SerializeField] protected float _attackingTime;
 
-    public override void EnterState()
-    {
-    }
-
     public override void UpdateState()
     {
     }

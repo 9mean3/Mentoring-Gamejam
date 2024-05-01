@@ -38,7 +38,7 @@ public class PipeBoss : MonoBehaviour
     private void Update()
     {
         _currentState.UpdateState();
-        Debug.Log(_currentState.name);
+        //Debug.Log(_currentState.name);
     }
 
     public void ChangeState(PipeBossState nextState)

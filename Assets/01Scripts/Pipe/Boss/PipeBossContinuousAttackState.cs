@@ -8,6 +8,8 @@ public class PipeBossContinuousAttackState : PipeBossDecidedPostionState
     [SerializeField] float _nextPipeMoveTime;
     public override void EnterState()
     {
+        base.EnterState();
+
         StartCoroutine(SpawnPipes());
     }
 
