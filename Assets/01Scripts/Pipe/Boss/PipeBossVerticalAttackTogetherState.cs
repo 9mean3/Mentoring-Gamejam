@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class PipeBossVerticalAttackTogetherState : PipeBossVerticalAttackState
+public class PipeBossVerticalAttackTogetherState : PipeBossDecidedPostionState
 {
     private bool _isAttack;
     private float _currentTime;
@@ -19,7 +19,7 @@ public class PipeBossVerticalAttackTogetherState : PipeBossVerticalAttackState
         foreach (var trm in _pipeTransforms)
         {
             SinglePipe obj = (SinglePipe)PoolManager.Instance.Pop("SinglePipe");
-            _pipes.Add(obj);
+            _pipeList.Add(obj);
             obj.transform.position = trm.position;
             obj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
 
@@ -33,16 +33,16 @@ public class PipeBossVerticalAttackTogetherState : PipeBossVerticalAttackState
         if(_currentTime >= _prepareTime && !_isAttack)
         {
             _isAttack = true;
-            foreach (var pipe in _pipes)
+            foreach (var pipe in _pipeList)
             {
                 Debug.Log("aPPP");
-                pipe.transform.DOMoveX(-12, _duration / 2).SetEase(Ease.InBack);
+                pipe.transform.DOMoveX(-11, _duration / 2).SetEase(Ease.InBack);
             }
         }
         
         if(_currentTime >= _prepareTime + _attackingTime - _duration)
         {
-            foreach (var pipe in _pipes)
+            foreach (var pipe in _pipeList)
             {
                 pipe.transform.DOMoveX(-40, _duration);
             }
@@ -56,7 +56,7 @@ public class PipeBossVerticalAttackTogetherState : PipeBossVerticalAttackState
 
     public override void ExitState()
     {
-        foreach (var pipe in _pipes)
+        foreach (var pipe in _pipeList)
         {
             PoolManager.Instance.Push(pipe);
         }

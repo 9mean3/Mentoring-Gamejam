@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FlappyBirdCanvas : MonoBehaviour
@@ -9,9 +10,15 @@ public class FlappyBirdCanvas : MonoBehaviour
     [Space]
     [SerializeField] private GameObject _startPanel;
     [SerializeField] private GameObject _endPanel;
+    [SerializeField] private TextMeshProUGUI _scoreText;
     private void Awake()
     {
         UIManager.Instance.OnChangeState += SetUI;
+    }
+
+    private void Update()
+    {
+        _scoreText.text = GameManager.Instance.CurrentScore.ToString();
     }
 
     private void SetUI(FBUIEnum obj)
@@ -50,11 +57,11 @@ public class FlappyBirdCanvas : MonoBehaviour
     private void StartGame()
     {
         UIManager.Instance.ChangeEnum(FBUIEnum.Boss); /////////// 이거 꼭 바꿔라 그렇지 않으면 너는 죽는다
+        //UIManager.Instance.ChangeEnum(FBUIEnum.Game);
     }
 
     private void ReStartGame()
     {
-        //UIManager.Instance.ChangeEnum(FBUIEnum.Start);
         SceneManagement.Instance.LoadScene("FlappyBirdScene");
     }
 

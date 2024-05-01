@@ -9,6 +9,7 @@ public class PipeObstacle : PoolableMono
     public override void Reset()
     {
         base.Reset();
+        isScored = false;
     }
 
     private void Update()

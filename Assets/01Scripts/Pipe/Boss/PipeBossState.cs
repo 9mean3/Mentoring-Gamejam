@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class PipeBossState : MonoBehaviour
 {
+    protected List<SinglePipe> _pipeList = new List<SinglePipe>();
+
     protected PipeBoss _pipeBoss;
     protected PipeBossState _nextState;
     protected virtual void Start()
@@ -24,5 +26,11 @@ public abstract class PipeBossState : MonoBehaviour
 
     public abstract void UpdateState();
 
-    public abstract void ExitState();
+    public virtual void ExitState()
+    {
+        foreach (var pipe in _pipeList)
+        {
+            PoolManager.Instance.Push(pipe);
+        }
+    }
 }
