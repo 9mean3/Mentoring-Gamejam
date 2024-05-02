@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,10 @@ public class FlappyBirdCanvas : MonoBehaviour
     [SerializeField] private GameObject _startPanel;
     [SerializeField] private GameObject _endPanel;
     [SerializeField] private TextMeshProUGUI _scoreText;
+
+    [Header("Test")]
+    [SerializeField] private bool _isBoss;
+
     private void Awake()
     {
         UIManager.Instance.OnChangeState += SetUI;
@@ -23,6 +28,7 @@ public class FlappyBirdCanvas : MonoBehaviour
 
     private void SetUI(FBUIEnum obj)
     {
+        Debug.Log(obj.ToString());
         switch (obj)
         {
             case FBUIEnum.Start:
@@ -34,12 +40,18 @@ public class FlappyBirdCanvas : MonoBehaviour
                 }
                 break;
             case FBUIEnum.Game:
+                {
+                    _startPanel.SetActive(false);
+                    _endPanel.SetActive(false);
+                    _playerInput.Jump -= StartGame;
+                }
+                break;
             case FBUIEnum.Boss:
                 {
                     _startPanel.SetActive(false);
                     _endPanel.SetActive(false);
                     _playerInput.Jump -= StartGame;
-
+                    GameManager.Instance.IsBoss = true;
                 }
                 break;
             case FBUIEnum.End:
@@ -47,6 +59,8 @@ public class FlappyBirdCanvas : MonoBehaviour
                     _startPanel.SetActive(false);
                     _endPanel.SetActive(true);
                     _playerInput.Jump += ReStartGame;
+                    GameManager.Instance.IsBoss = false;
+                    DOTween.KillAll();
                 }
                 break;
             default:
@@ -56,8 +70,10 @@ public class FlappyBirdCanvas : MonoBehaviour
 
     private void StartGame()
     {
-        UIManager.Instance.ChangeEnum(FBUIEnum.Boss); /////////// 이거 꼭 바꿔라 그렇지 않으면 너는 죽는다
-        //UIManager.Instance.ChangeEnum(FBUIEnum.Game);
+        if (_isBoss)
+            UIManager.Instance.ChangeEnum(FBUIEnum.Boss); /////////// 이거 꼭 바꿔라 그렇지 않으면 너는 죽는다
+        else
+            UIManager.Instance.ChangeEnum(FBUIEnum.Game);
     }
 
     private void ReStartGame()
@@ -67,7 +83,7 @@ public class FlappyBirdCanvas : MonoBehaviour
 
     private void OnDisable()
     {
-            //UIManager.Instance.OnChangeState -= SetUI;
+        //UIManager.Instance.OnChangeState -= SetUI;
         _playerInput.Jump -= ReStartGame;
         _playerInput.Jump -= StartGame;
     }

@@ -27,7 +27,8 @@ public class PipeBossIdleState : PipeBossState
                 r = _pipeBoss.CurrentPatternIndex++;
                 if(r >= _pipeBoss.States.Count - 1)
                 {
-                    _pipeBoss.CurrentPatternIndex = 0;
+                    //_pipeBoss.CurrentPatternIndex = 0;
+                    _pipeBoss.IsRandomPattern = true;
                 }
             }
 

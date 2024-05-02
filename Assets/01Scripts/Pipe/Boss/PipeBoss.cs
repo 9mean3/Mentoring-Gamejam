@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum BossMode
 {
-    
+
 }
 
 public class PipeBoss : MonoBehaviour
@@ -16,6 +16,8 @@ public class PipeBoss : MonoBehaviour
 
     public bool IsRandomPattern = false;
     public int CurrentPatternIndex = 0;
+
+    private float _curTime = 0;
 
     private void Awake()
     {
@@ -38,6 +40,14 @@ public class PipeBoss : MonoBehaviour
     private void Update()
     {
         _currentState.UpdateState();
+
+        _curTime += Time.deltaTime;
+        if (_curTime >= 1)
+        {
+            GameManager.Instance.AddScore();
+            _curTime = 0;
+        }
+
         //Debug.Log(_currentState.name);
     }
 

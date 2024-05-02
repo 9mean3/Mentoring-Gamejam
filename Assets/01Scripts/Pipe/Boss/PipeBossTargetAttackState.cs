@@ -8,13 +8,12 @@ public class PipeBossTargetAttackState : PipeBossDecidedPostionState
 {
     [SerializeField] private float _spawnTerm;
 
-    private bool _isTargeting;
+    private Dictionary<SinglePipe, bool> _targetingPipe = new Dictionary<SinglePipe, bool>();
+    private Vector3 _playerPos;
 
     public override void EnterState()
     {
         base.EnterState();
-
-        _isTargeting = true;
         StartCoroutine(PipeSpawn());
     }
 
@@ -25,11 +24,13 @@ public class PipeBossTargetAttackState : PipeBossDecidedPostionState
             SinglePipe obj = (SinglePipe)PoolManager.Instance.Pop("SinglePipe");
             _pipeList.Add(obj);
             obj.transform.position = trm.position;
-            obj.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
+
+            _targetingPipe[obj] = true;
 
             Sequence seq = DOTween.Sequence();
-            seq.Append(obj.transform.DOMoveX(trm.position.x - 3, _prepareTime).SetEase(Ease.OutBack));
-            seq.Append(obj.transform.DOLocalMove(obj.transform.up, _attackingTime).SetEase(Ease.InBack)).OnComplete(() => { _isTargeting = false; });
+            seq.Append(obj.transform.DOMoveX(trm.position.x - 4, _prepareTime).SetEase(Ease.OutBack));
+            seq.AppendCallback(() => { _targetingPipe[obj] = false; Debug.Log(_playerPos + (_playerPos - obj.transform.position)); });
+            seq.Append(obj.transform.DOMove(_playerPos + (_playerPos - obj.transform.position), _attackingTime).SetEase(Ease.InBack));
 
             yield return new WaitForSeconds(_spawnTerm);
         }
@@ -37,11 +38,13 @@ public class PipeBossTargetAttackState : PipeBossDecidedPostionState
 
     public override void UpdateState()
     {
-        if (_isTargeting)
+        _playerPos = GameManager.Instance.Player.transform.position;
+        foreach (var pipe in _pipeList)
         {
-            foreach (var pipe in _pipeList)
+            if (_targetingPipe[pipe])
             {
-                Vector2 dir = GameManager.Instance.Player.transform.position - pipe.transform.position;
+                Vector3 dir = _playerPos - pipe.transform.position;
+                dir.Normalize();
                 pipe.transform.up = dir;
             }
         }
