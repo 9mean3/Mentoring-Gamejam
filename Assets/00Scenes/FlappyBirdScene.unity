@@ -1598,7 +1598,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 3bdc441f5d37b2d4d91f990399bba393, type: 3}
   - name: Jump
     clip: {fileID: 8300000, guid: 04e21549b3022a847892b57ad216a0e8, type: 3}
-  _bgmList: []
+  _bgmList:
+  - name: Music1
+    clip: {fileID: 8300000, guid: e7915f492877ead4e8d8a15bfcd6e8a4, type: 3}
+  - name: Music2
+    clip: {fileID: 8300000, guid: 9ce6164ffd4373544900353e63036a93, type: 3}
+  - name: Music3
+    clip: {fileID: 8300000, guid: 8e94afa53c239854cbff9ea16b68c65b, type: 3}
 --- !u!1001 &1374776465
 PrefabInstance:
   m_ObjectHideFlags: 0

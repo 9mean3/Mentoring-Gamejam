@@ -11,9 +11,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     public int CurrentScore { get; private set; }
     
-
-
-    public bool IsBoss = false;
     private bool _isBossSpawned = false;
     private bool _isBossState = false;
 

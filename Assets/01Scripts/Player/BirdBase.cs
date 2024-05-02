@@ -75,6 +75,7 @@ public class BirdBase : MonoBehaviour
     {
         Debug.Log("died");
         SoundManager.Instance.PlaySFX("Tired");
+        SoundManager.Instance.StopBGM();
         GameManager.Instance.VerticalSpeed = 0;
         UIManager.Instance.ChangeEnum(FBUIEnum.End);
     }

@@ -51,7 +51,6 @@ public class FlappyBirdCanvas : MonoBehaviour
                     _startPanel.SetActive(false);
                     _endPanel.SetActive(false);
                     _playerInput.Jump -= StartGame;
-                    GameManager.Instance.IsBoss = true;
                 }
                 break;
             case FBUIEnum.End:
@@ -59,7 +58,6 @@ public class FlappyBirdCanvas : MonoBehaviour
                     _startPanel.SetActive(false);
                     _endPanel.SetActive(true);
                     _playerInput.Jump += ReStartGame;
-                    GameManager.Instance.IsBoss = false;
                     DOTween.KillAll();
                 }
                 break;
