@@ -8,7 +8,6 @@ public class PipeBossIdleState : PipeBossState
     float _curTime;
     public override void EnterState()
     {
-        Debug.Log("Idle");
         _curTime = 0;
     }
 

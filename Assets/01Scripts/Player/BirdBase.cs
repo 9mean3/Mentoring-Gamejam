@@ -66,6 +66,7 @@ public class BirdBase : MonoBehaviour
 
     protected virtual void Jump()
     {
+        SoundManager.Instance.PlaySFX("Jump");
         _rb.velocity = new Vector2(_rb.velocity.x, 0);
         _rb.velocity += Vector2.up * _jumpPower;
     }

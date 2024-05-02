@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -13,7 +14,7 @@ public struct Sound
 enum AudioType
 {
     SFX,
-    BGM, 
+    BGM,
     EnumCount
 }
 
@@ -37,6 +38,8 @@ public class SoundManager : MonoSingleton<SoundManager>
         {
             _bgmDictionary[sound.name] = sound.clip;
         }
+
+        PlayRandomBGM();
     }
 
     public void PlaySFX(string name)
@@ -66,5 +69,18 @@ public class SoundManager : MonoSingleton<SoundManager>
         {
             Debug.LogError("그러한 소리는 없는데");
         }
+    }
+
+    public void PlayRandomBGM()
+    {
+        AudioClip clip = _bgmList[UnityEngine.Random.Range(0, _bgmList.Length)].clip;
+        _sources[(int)AudioType.BGM].clip = clip;
+        _sources[(int)AudioType.BGM].loop = true;
+        _sources[(int)AudioType.BGM].Play();
+    }
+
+    public void StopBGM()
+    {
+        _sources[(int)AudioType.BGM].Stop();
     }
 }

@@ -35,7 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
         if (CurrentScore >= BossSpawnScore + 2 && !_isBossSpawned)
         {
             _isBossSpawned = true;
-            //Instantiate(_boss, new Vector3(0, 0, 0), Quaternion.identity); // 꼭 수정해라 그렇지 않으면 너는 죽는다.
+            Instantiate(_boss, new Vector3(0, 0, 0), Quaternion.identity); // 꼭 수정해라 그렇지 않으면 너는 죽는다.
         }
     }
 }

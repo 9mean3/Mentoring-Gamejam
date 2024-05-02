@@ -53,6 +53,7 @@ public class PipeBoss : MonoBehaviour
 
     public void ChangeState(PipeBossState nextState)
     {
+        Debug.Log($"Current State : {_currentState} => {nextState.ToString()}");
         _currentState.ExitState();
         _currentState = nextState;
         _currentState.EnterState();

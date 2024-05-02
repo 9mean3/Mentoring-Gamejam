@@ -32,7 +32,8 @@ public abstract class PipeBossState : MonoBehaviour
 
     public virtual void ExitState()
     {
-        Debug.Log(DOTween.KillAll());
+        //Debug.Log(DOTween.KillAll());
+        DOTween.KillAll();
 
         foreach (var pipe in _pipeList)
         {

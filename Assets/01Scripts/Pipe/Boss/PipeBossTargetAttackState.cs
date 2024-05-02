@@ -19,6 +19,7 @@ public class PipeBossTargetAttackState : PipeBossDecidedPostionState
 
     private IEnumerator PipeSpawn()
     {
+        int i = 0;
         foreach (var trm in _pipeTransforms)
         {
             SinglePipe obj = (SinglePipe)PoolManager.Instance.Pop("SinglePipe");
@@ -28,11 +29,36 @@ public class PipeBossTargetAttackState : PipeBossDecidedPostionState
             _targetingPipe[obj] = true;
 
             Sequence seq = DOTween.Sequence();
-            seq.Append(obj.transform.DOMoveX(trm.position.x - 4, _prepareTime).SetEase(Ease.OutBack));
-            seq.AppendCallback(() => { _targetingPipe[obj] = false; Debug.Log(_playerPos + (_playerPos - obj.transform.position)); });
-            seq.Append(obj.transform.DOMove(_playerPos + (_playerPos - obj.transform.position), _attackingTime).SetEase(Ease.InBack));
-
+            seq.Append(obj.transform.DOMoveX(trm.position.x - 3, _prepareTime).SetEase(Ease.OutBack));
+            seq.AppendCallback(() => { _targetingPipe[obj] = false; })
+                .OnComplete(() =>
+                {
+                    if (i >= _pipeTransforms.Length)
+                    {
+                        Attack(obj, true);
+                    }
+                    else
+                    {
+                        Attack(obj);
+                    }
+                });
+            i++;
             yield return new WaitForSeconds(_spawnTerm);
+        }
+    }
+
+    private void Attack(SinglePipe pipe, bool isLast = false)
+    {
+        if (!isLast)
+        {
+            pipe.transform.DOMove(_playerPos + (_playerPos - pipe.transform.position).normalized * 40, _attackingTime)
+                .SetEase(Ease.InBack);
+        }
+        else
+        {
+            pipe.transform.DOMove(_playerPos + (_playerPos - pipe.transform.position).normalized * 40, _attackingTime)
+                .SetEase(Ease.InBack)
+                .OnComplete(() => { _pipeBoss.ChangeState(_nextState); });
         }
     }
 
