@@ -68,10 +68,23 @@ public class FlappyBirdCanvas : MonoBehaviour
 
     private void StartGame()
     {
-        if (_isBoss)
-            UIManager.Instance.ChangeEnum(FBUIEnum.Boss); /////////// 이거 꼭 바꿔라 그렇지 않으면 너는 죽는다
-        else
-            UIManager.Instance.ChangeEnum(FBUIEnum.Game);
+        Debug.Log("GameMode: " + GameManager.Instance.PlayerData.GameMode);
+        switch (GameManager.Instance.PlayerData.GameMode)
+        {
+            case GameMode.Normal:
+            case GameMode.Pipe:
+                {
+                    UIManager.Instance.ChangeEnum(FBUIEnum.Game);
+                }
+                break;
+            case GameMode.Boss:
+                {
+                    UIManager.Instance.ChangeEnum(FBUIEnum.Boss);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private void ReStartGame()
