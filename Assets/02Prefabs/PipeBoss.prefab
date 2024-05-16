@@ -37,6 +37,7 @@ Transform:
   - {fileID: 4569219360948059353}
   - {fileID: 1015122192952990498}
   - {fileID: 648000286995315040}
+  - {fileID: 5918394810833880198}
   m_Father: {fileID: 407155987509615695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &190500368457837610
@@ -119,6 +120,50 @@ MonoBehaviour:
   States: []
   IsRandomPattern: 0
   CurrentPatternIndex: 0
+--- !u!1 &341339095959315719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5918394810833880198}
+  - component: {fileID: 6154565201970420806}
+  m_Layer: 0
+  m_Name: End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5918394810833880198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341339095959315719}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1061141183483817629}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6154565201970420806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341339095959315719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00d301bae56f3546ade5ea06beedd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &756850408549271718
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,8 +325,8 @@ MonoBehaviour:
   - {fileID: 6850714462786469333}
   - {fileID: 6893328669989265874}
   - {fileID: 8094057835443066398}
-  _prepareTime: 3
-  _attackingTime: 6.5
+  _prepareTime: 2
+  _attackingTime: 5
   _duration: 2
 --- !u!1 &955353784473562276
 GameObject:
@@ -363,10 +408,10 @@ MonoBehaviour:
   _spawnTransform: {fileID: 7853759323554619844}
   _destroyTransform: {fileID: 6257221767627565460}
   _pipeDistance: 3
-  _moveDuration: 13
+  _moveDuration: 8
   _attackTime: 1
   _spawnCount: 3
-  _nextPipeSpawnTime: 5
+  _nextPipeSpawnTime: 3.5
 --- !u!1 &2348805045886038717
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,9 +582,9 @@ MonoBehaviour:
   - {fileID: 971636136587121389}
   - {fileID: 8397237666438212972}
   - {fileID: 5723566922888960582}
-  _prepareTime: 1
+  _prepareTime: 1.2
   _attackingTime: 1
-  _spawnTerm: 1.5
+  _spawnTerm: 1.8
 --- !u!1 &3451077630395995338
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +700,7 @@ MonoBehaviour:
   - {fileID: 3858092265083296981}
   _prepareTime: 1.5
   _attackingTime: 1
-  _spawnTerm: 4
+  _spawnTerm: 3
 --- !u!1 &4532764614006139911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1128,7 @@ MonoBehaviour:
   - {fileID: 985618754762846312}
   - {fileID: 2393885966363375525}
   - {fileID: 8881249160937887068}
-  _prepareTime: 1.5
+  _prepareTime: 1.3
   _attackingTime: 0.6
   _nextPipeMoveTime: 0.6
 --- !u!1 &7738898994670535960
@@ -1265,7 +1310,7 @@ MonoBehaviour:
   - {fileID: 5796165552589997079}
   - {fileID: 8065638336640621955}
   - {fileID: 6980062705152189201}
-  _prepareTime: 1.5
+  _prepareTime: 1.3
   _attackingTime: 0.7
   _nextPipeMoveTime: 0.5
 --- !u!1 &9102417478318668528

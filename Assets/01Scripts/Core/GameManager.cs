@@ -9,7 +9,7 @@ public class GameManager : MonoSingleton<GameManager>
     public int BossSpawnScore;
 
     [SerializeField] private PlayerDataSO _playerData;
-    [SerializeField] private PipeBoss _boss;
+    [SerializeField] private PipeBoss _pipeBoss;
 
     public PlayerDataSO PlayerData { get { return _playerData; } }
     public int CurrentScore { get; private set; }
@@ -21,7 +21,8 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Player = FindObjectOfType<FlappyBird>();
 
-        UIManager.Instance.OnChangeState += SpawnBoss;
+        if(FlappyUIManager.Instance != null)
+        FlappyUIManager.Instance.OnChangeState += SpawnBoss;
     }
 
     public void ChangeGameMode(GameMode newGameMode)
@@ -42,7 +43,7 @@ public class GameManager : MonoSingleton<GameManager>
                     if (CurrentScore >= BossSpawnScore + 2 && !_isBossSpawned)
                     {
                         _isBossSpawned = true;
-                        UIManager.Instance.ChangeEnum(FBUIEnum.Boss);
+                        FlappyUIManager.Instance.ChangeEnum(FBUIEnum.Boss);
                     }
                 }
                 break;
@@ -55,13 +56,13 @@ public class GameManager : MonoSingleton<GameManager>
     {
         if (uiState == FBUIEnum.Boss)
         {
-            StartCoroutine(SpawnBossCor(3));
+            StartCoroutine(SpawnBossCor(2));
         }
     }
 
     private IEnumerator SpawnBossCor(float spawnTime)
     {
         yield return new WaitForSeconds(spawnTime);
-        Instantiate(_boss, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(_pipeBoss, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }

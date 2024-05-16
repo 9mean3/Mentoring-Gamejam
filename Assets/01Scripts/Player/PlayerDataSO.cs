@@ -14,4 +14,5 @@ public enum GameMode
 public class PlayerDataSO : ScriptableObject
 {
     public GameMode GameMode;
+    public bool IsClearPipeBoss;
 }

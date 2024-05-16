@@ -2,14 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartPanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _gameModeTxt;
+    [SerializeField] private Button _flappyPlatformBtn;
 
     private void Awake()
     {
         SetText();
+
+        if (GameManager.Instance.PlayerData.IsClearPipeBoss)
+        {
+            _flappyPlatformBtn.interactable = true;
+        }
+        else
+        {
+            _flappyPlatformBtn.interactable = false;
+        }
     }
 
     public void ChangeGameMode()

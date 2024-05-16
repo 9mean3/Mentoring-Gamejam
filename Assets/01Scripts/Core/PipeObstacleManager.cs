@@ -11,7 +11,7 @@ public class PipeObstacleManager : MonoSingleton<PipeObstacleManager>
 
     private void Awake()
     {
-        UIManager.Instance.OnChangeState += OnUIChanged;
+        FlappyUIManager.Instance.OnChangeState += OnUIChanged;
     }
 
 

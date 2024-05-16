@@ -19,7 +19,7 @@ public class BirdBase : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
 
-        UIManager.Instance.OnChangeState += OnUIChanged;
+        FlappyUIManager.Instance.OnChangeState += OnUIChanged;
     }
 
     private void Update()
@@ -77,7 +77,7 @@ public class BirdBase : MonoBehaviour
         SoundManager.Instance.PlaySFX("Tired");
         SoundManager.Instance.StopBGM();
         GameManager.Instance.VerticalSpeed = 0;
-        UIManager.Instance.ChangeEnum(FBUIEnum.End);
+        FlappyUIManager.Instance.ChangeEnum(FBUIEnum.End);
     }
 
     protected virtual void OnDisable()

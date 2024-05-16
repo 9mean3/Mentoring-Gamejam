@@ -5,7 +5,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class FlappyBirdCanvas : MonoBehaviour
+public enum FBUIEnum
+{
+    Start,
+    Game,
+    Boss,
+    End,
+}
+
+public class FlappyBirdCanvas : UICanvas
 {
     [SerializeField] private PlayerInput _playerInput;
     [Space]
@@ -13,12 +21,13 @@ public class FlappyBirdCanvas : MonoBehaviour
     [SerializeField] private GameObject _endPanel;
     [SerializeField] private TextMeshProUGUI _scoreText;
 
-    [Header("Test")]
-    [SerializeField] private bool _isBoss;
+    /*    [Header("Test")]
+        [SerializeField] private bool _isBoss;*/
 
     private void Awake()
     {
-        UIManager.Instance.OnChangeState += SetUI;
+        FlappyUIManager.Instance.OnChangeState += SetUI;
+        SoundManager.Instance.PlayRandomBGM();
     }
 
     private void Update()
@@ -74,12 +83,12 @@ public class FlappyBirdCanvas : MonoBehaviour
             case GameMode.Normal:
             case GameMode.Pipe:
                 {
-                    UIManager.Instance.ChangeEnum(FBUIEnum.Game);
+                    FlappyUIManager.Instance.ChangeEnum(FBUIEnum.Game);
                 }
                 break;
             case GameMode.Boss:
                 {
-                    UIManager.Instance.ChangeEnum(FBUIEnum.Boss);
+                    FlappyUIManager.Instance.ChangeEnum(FBUIEnum.Boss);
                 }
                 break;
             default:

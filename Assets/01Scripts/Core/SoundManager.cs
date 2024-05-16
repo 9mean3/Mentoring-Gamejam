@@ -38,8 +38,6 @@ public class SoundManager : MonoSingleton<SoundManager>
         {
             _bgmDictionary[sound.name] = sound.clip;
         }
-
-        PlayRandomBGM();
     }
 
     public void PlaySFX(string name)
