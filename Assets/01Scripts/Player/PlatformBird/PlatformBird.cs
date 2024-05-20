@@ -8,29 +8,36 @@ public class PlatformBird : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _jumpPower;
 
+    [Header("그라웅드 체커")]
+    [SerializeField] private Transform _groundChecker;
+    [SerializeField] private LayerMask _whatIsGround;
+    [SerializeField] private float _groundCheckDistance;
+
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _spriteRenderer;
 
-    private BoxCollider2D _groundChecker;
-
     private bool _isGround;
-    private int _curX;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        _groundChecker = transform.Find("GroundChecker").GetComponent<BoxCollider2D>();
-
         _playerInput.MoveX += MoveXEvent;
         _playerInput.Jump += JumpEvent;
     }
 
+    private void OnDestroy()
+    {
+        _playerInput.MoveX -= MoveXEvent;
+        _playerInput.Jump -= JumpEvent;
+    }
+
     private void Update()
     {
-        //Debug.Log(_rigidbody.velocity);
-        if (_groundChecker.IsTouchingLayers(LayerMask.NameToLayer("Ground")))
+        int groundLayerMask = 1 << LayerMask.NameToLayer("Ground");
+
+        if (IsGroundDetected())
         {
             _isGround = true;
         }
@@ -40,10 +47,20 @@ public class PlatformBird : MonoBehaviour
         }
     }
 
+    private void SetVelocity(float x, float y)
+    {
+        Vector2 vel = new Vector2(x, y);
+        _rigidbody.velocity = vel;
+    }
+
+    public bool IsGroundDetected() =>
+    Physics2D.Raycast(_groundChecker.position, Vector2.down,
+                        _groundCheckDistance, _whatIsGround);
+
     private void MoveXEvent(float input)
     {
         float vel = input * _moveSpeed;
-        _rigidbody.velocity = new Vector2(vel, _rigidbody.velocity.y);
+        SetVelocity(vel, _rigidbody.velocity.y);
 
         if (Mathf.Abs(_rigidbody.velocity.x) > 0.1f)
         {
@@ -54,11 +71,13 @@ public class PlatformBird : MonoBehaviour
     private void JumpEvent()
     {
         if (_isGround)
-            _rigidbody.velocity += Vector2.up * _jumpPower;
+            SetVelocity(_rigidbody.velocity.x, _jumpPower);
     }
 
     private void SpriteFlipX(float dir)
     {
         _spriteRenderer.flipX = dir > 0 ? false : true;
     }
+
+    
 }
