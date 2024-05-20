@@ -9,7 +9,7 @@ public enum PlayerStateEnum
     Fall,
 }
 
-public class PlayerStateMachine : MonoBehaviour
+public class PlayerStateMachine 
 {
     public Dictionary<PlayerStateEnum, PlayerState> StateDictionary = new Dictionary<PlayerStateEnum, PlayerState>();
     private PlayerState _curState;

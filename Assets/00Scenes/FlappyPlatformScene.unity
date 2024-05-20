@@ -5411,7 +5411,7 @@ MonoBehaviour:
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  _groundCheckDistance: 5
+  _groundCheckDistance: 0.45
 --- !u!114 &2088327065
 MonoBehaviour:
   m_ObjectHideFlags: 0

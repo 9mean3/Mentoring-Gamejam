@@ -6,8 +6,9 @@ using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour
 {
+    public float InputX { get; private set; }
+
     public event Action Jump;
-    public event Action<float> MoveX;
 
     private void Awake()
     {
@@ -21,18 +22,11 @@ public class PlayerInput : MonoBehaviour
             Jump?.Invoke();
         }
 
-        float moveX = Input.GetAxisRaw("Horizontal");
-        MoveX.Invoke(moveX);
-
+        InputX = Input.GetAxisRaw("Horizontal");
     }
 
     private void DebugJump()
     {
         Debug.Log("Jump");
-    }
-
-    private void DebugMoveX(float move)
-    {
-        Debug.Log(move);
     }
 }

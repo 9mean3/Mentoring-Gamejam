@@ -8,10 +8,12 @@ public class PlayerState : MonoBehaviour
     {
         player = _player;
         stateMachine = _stateMachine;
+        _rigidbody = _player.RigidbodyCompo;
     }
 
-    PlatformBird _player;
-    PlayerStateMachine _stateMachine;
+    protected PlatformBird _player;
+    protected PlayerStateMachine _stateMachine;
+    protected Rigidbody2D _rigidbody;
 
     public virtual void EnterState()
     {
