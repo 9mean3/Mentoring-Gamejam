@@ -6,9 +6,13 @@ using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour
 {
+    public bool UseMouseButtonJump;
+
     public float InputX { get; private set; }
 
     public event Action Jump;
+
+    public event Action BasicAttack;
 
     private void Awake()
     {
@@ -17,9 +21,24 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()))
+        if (UseMouseButtonJump)
         {
-            Jump?.Invoke();
+            if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()))
+            {
+                Jump?.Invoke();
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump?.Invoke();
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                BasicAttack?.Invoke();
+            }
         }
 
         InputX = Input.GetAxisRaw("Horizontal");

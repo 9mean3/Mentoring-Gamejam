@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : PlayerGroundState
+public class PlayerAirState : PlayerState
 {
-    public PlayerMoveState(PlatformBird player, PlayerStateMachine stateMachine) : base(player, stateMachine)
+    public PlayerAirState(PlatformBird player, PlayerStateMachine stateMachine) : base(player, stateMachine)
     {
     }
 
@@ -20,11 +20,6 @@ public class PlayerMoveState : PlayerGroundState
         float inputX = _player.PlayerInput.InputX;
         float moveVelX = inputX * _player.MoveSpeed;
         _player.SetVelocity(moveVelX, _rigidbody.velocity.y);
-
-        if(Mathf.Abs(inputX) < 0.05f)
-        {
-            _stateMachine.ChangeState(PlayerStateEnum.Idle);
-        }
     }
 
     public override void ExitState()

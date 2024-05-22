@@ -25,18 +25,25 @@ public class PlatformBird : MonoBehaviour
     private void Awake()
     {
         RigidbodyCompo = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = transform.Find("Visual").GetComponent<SpriteRenderer>();
 
         _stateMachine = new PlayerStateMachine();
 
         foreach (PlayerStateEnum stateEnum in Enum.GetValues(typeof(PlayerStateEnum)))
         {
             string typeName = $"Player{stateEnum.ToString()}State";
-            Type type = Type.GetType(typeName);
-            if (type == null) Debug.Log("¾Æ Shit");
-            PlayerState stateInstance = Activator.CreateInstance(type, this, _stateMachine) as PlayerState;
-            if (stateInstance == null) Debug.Log("Ah f");
-            _stateMachine.AddState(stateEnum, stateInstance);
+            
+            try
+            {
+                Type type = Type.GetType(typeName);
+                PlayerState stateInstance = (PlayerState)Activator.CreateInstance(type, this, _stateMachine);
+                _stateMachine.AddState(stateEnum, stateInstance);
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+                throw;
+            }
         }
         _stateMachine.Initialize(PlayerStateEnum.Idle);
     }
@@ -46,10 +53,15 @@ public class PlatformBird : MonoBehaviour
         _stateMachine.CurrentState.UpdateState();
     }
 
-    public void SetVelocity(float x, float y)
+    public void SetVelocity(float x, float y, bool doNotFilp = false)
     {
         Vector2 vel = new Vector2(x, y);
         RigidbodyCompo.velocity = vel;
+
+        if (!doNotFilp && Mathf.Abs(x) > 0.05f)
+        {
+            SpriteFlipX(x); 
+        }
     }
 
     public bool IsGroundDetected() =>
@@ -60,17 +72,17 @@ public class PlatformBird : MonoBehaviour
     {
         if (withY)
         {
-            RigidbodyCompo.velocity = new Vector2(0, RigidbodyCompo.velocity.y);
+            RigidbodyCompo.velocity = Vector2.zero;
         }
         else
         {
-            RigidbodyCompo.velocity = Vector2.zero;
+            RigidbodyCompo.velocity = new Vector2(0, RigidbodyCompo.velocity.y);
         }
     }
 
-    private void SpriteFlipX(float dir)
+    private void SpriteFlipX(float dirX)
     {
-        _spriteRenderer.flipX = dir > 0 ? false : true;
+        _spriteRenderer.flipX = dirX > 0 ? false : true;
     }
 
 

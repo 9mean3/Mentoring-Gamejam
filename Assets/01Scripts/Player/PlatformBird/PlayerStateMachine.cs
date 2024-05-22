@@ -7,6 +7,7 @@ public enum PlayerStateEnum
     Move,
     Jump,
     Fall,
+    BasicAttack,
 }
 
 public class PlayerStateMachine 
@@ -26,6 +27,8 @@ public class PlayerStateMachine
         _curState.ExitState();
         _curState = StateDictionary[nextState];
         _curState.EnterState();
+
+        Debug.Log("curstate : " + _curState);
     }
 
     public void AddState(PlayerStateEnum newStateEnum, PlayerState newState)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,9 @@ public class PlayerGroundState : PlayerState
     {
         base.EnterState();
         _player.PlayerInput.Jump += JumpEvent;
+        _player.PlayerInput.BasicAttack += BasicAttackEvent;
     }
+
 
     public override void UpdateState()
     {
@@ -23,6 +26,7 @@ public class PlayerGroundState : PlayerState
     {
         base.ExitState();
         _player.PlayerInput.Jump -= JumpEvent;
+        _player.PlayerInput.BasicAttack -= BasicAttackEvent;
     }
 
     private void JumpEvent()
@@ -31,5 +35,10 @@ public class PlayerGroundState : PlayerState
         {
             _stateMachine.ChangeState(PlayerStateEnum.Jump);
         }
+    }
+    
+    private void BasicAttackEvent()
+    {
+        _stateMachine.ChangeState(PlayerStateEnum.BasicAttack);
     }
 }

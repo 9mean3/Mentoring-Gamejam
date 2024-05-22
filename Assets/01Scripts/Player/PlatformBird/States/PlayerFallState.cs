@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFallState : PlayerState
+public class PlayerFallState : PlayerAirState
 {
     public PlayerFallState(PlatformBird player, PlayerStateMachine stateMachine) : base(player, stateMachine)
     {
@@ -16,6 +16,11 @@ public class PlayerFallState : PlayerState
     public override void UpdateState()
     {
         base.UpdateState();
+
+        if (_player.IsGroundDetected())
+        {
+            _stateMachine.ChangeState(PlayerStateEnum.Idle);
+        }
     }
 
     public override void ExitState()

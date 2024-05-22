@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState
 {
     public PlayerState(PlatformBird player, PlayerStateMachine stateMachine)
     {
-        player = _player;
-        stateMachine = _stateMachine;
+        _player = player;
+        _stateMachine = stateMachine;
         _rigidbody = _player.RigidbodyCompo;
     }
 
