@@ -12,10 +12,6 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindObjectOfType<T>();
-/*                if (_instance == null)
-                {
-                    Debug.LogError($"이거 없다 클낫다");
-                }*/
             }
             return _instance;
         }

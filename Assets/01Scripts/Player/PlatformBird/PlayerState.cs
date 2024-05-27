@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState
+public class PlayerState//
 {
     public PlayerState(PlatformBird player, PlayerStateMachine stateMachine)
     {

@@ -8,10 +8,19 @@ public class PlatformBird : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
     public PlayerInput PlayerInput { get { return _playerInput; } }
+    [Header("움직임 값들")]
     [SerializeField] private float _moveSpeed;
     public float MoveSpeed { get { return _moveSpeed; } }
     [SerializeField] private float _jumpPower;
     public float JumpPower { get { return _jumpPower; } }
+
+    [Header("BasicAttackState")]
+    public float BasicAtkRadius;
+    public float BasicAtkSpeed;
+    public float BasicAtkDistance;
+
+    public Vector2 tstcenter;
+
 
     [Header("그라웅드 체커")]
     [SerializeField] private Transform _groundChecker;
@@ -51,6 +60,11 @@ public class PlatformBird : MonoBehaviour
     private void Update()
     {
         _stateMachine.CurrentState.UpdateState();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(tstcenter, BasicAtkRadius);
     }
 
     public void SetVelocity(float x, float y, bool doNotFilp = false)

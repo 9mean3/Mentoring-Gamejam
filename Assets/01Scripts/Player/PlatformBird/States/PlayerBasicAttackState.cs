@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerBasicAttackState : PlayerState
@@ -8,8 +10,11 @@ public class PlayerBasicAttackState : PlayerState
     {
     }
 
-    private Vector2 _dir;
+    private Vector3 _dir;
+    private Vector2 _attackCenter;
+
     private float _curTime = 0;
+    private LayerMask _enemyLayer = LayerMask.NameToLayer("Enemy");
 
     public override void EnterState()
     {
@@ -23,15 +28,26 @@ public class PlayerBasicAttackState : PlayerState
 
         _dir = mousePos - _player.transform.position;
         _dir.Normalize();
-        _player.SetVelocity(_dir.x * 5f, _dir.y * 5f);
+        _player.SetVelocity(_dir.x * 3f, _dir.y * 3.5f);
+
+        _attackCenter = _player.transform.position + _dir *_player.BasicAtkDistance;
+        _player.tstcenter = _attackCenter;
     }
 
 
     public override void UpdateState()
     {
         base.UpdateState();
+/*
+        RaycastHit2D[] hits = 
+
+        foreach (var hit in hits)
+        {
+            Debug.Log(hit.transform.name);
+        }*/
+
         _curTime += Time.deltaTime;
-        if(_curTime > 1f)
+        if (_curTime > _player.BasicAtkSpeed)
         {
             _stateMachine.ChangeState(PlayerStateEnum.Idle);
         }
@@ -40,5 +56,10 @@ public class PlayerBasicAttackState : PlayerState
     public override void ExitState()
     {
         base.ExitState();
+    }
+
+    private void AttackEvent()
+    {
+
     }
 }
