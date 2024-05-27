@@ -43,6 +43,18 @@ public class Enemy : MonoBehaviour
         FlipController(x);
     }
 
+    public void StopImmediately(bool withY = false)
+    {
+        if (withY)
+        {
+            RigidbodyCompo.velocity = Vector2.zero;
+        }
+        else
+        {
+            RigidbodyCompo.velocity = new Vector2(0, RigidbodyCompo.velocity.y);
+        }
+    }
+
     public virtual void Flip()
     {
         FacingDir = FacingDir * -1;

@@ -9,6 +9,7 @@ public class FrogIdle : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+        _enemy.StopImmediately();
     }
 
     public override void UpdateState()
