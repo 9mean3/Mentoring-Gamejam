@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PlayerDataSo
   m_EditorClassIdentifier: 
   GameMode: 0
+  IsClearPipeBoss: 0

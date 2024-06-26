@@ -35,6 +35,6 @@ public class FlappyUIManager : MonoSingleton<FlappyUIManager>
         GameManager.Instance.PlayerData.IsClearPipeBoss = true;
         CurrentCanvas.gameObject.SetActive(false);
         _blackImage.enabled = true;
-        SceneManagement.Instance.LoadScene("FlappyPlatformScene");
+        SceneManagement.Instance.LoadScene("GameEndScene");
     }
 }

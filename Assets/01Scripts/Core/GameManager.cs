@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public FlappyBird Player { get; private set; }
+    public Transform Player { get; private set; }
     public float VerticalSpeed;
     public int BossSpawnScore;
 
@@ -19,7 +19,9 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
-        Player = FindObjectOfType<FlappyBird>();
+        Player = FindObjectOfType<FlappyBird>().transform;
+        if (Player == null)
+            Player = FindObjectOfType<PlatformBird>().transform;
 
         if(FlappyUIManager.Instance != null)
         FlappyUIManager.Instance.OnChangeState += SpawnBoss;

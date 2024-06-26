@@ -546,7 +546,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 1223733858, guid: d852a0074b3bcbe46a5dfa77adf67df0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -681,7 +681,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1, y: 1}
   m_Direction: 0
 --- !u!4 &382819425
 Transform:
@@ -4725,6 +4725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 732442741}
+  - component: {fileID: 732442742}
   m_Layer: 0
   m_Name: Idle
   m_TagString: Untagged
@@ -4747,6 +4748,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 931640041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &732442742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732442740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c0b47add4edaaa46b5caca1d11aa11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 0}
+  _rigidbody: {fileID: 0}
 --- !u!1 &739829705
 GameObject:
   m_ObjectHideFlags: 0
@@ -5223,6 +5238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1208846187}
+  - component: {fileID: 1208846188}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
@@ -5245,6 +5261,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 931640041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1208846188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208846186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066c9552d30487e49a6a6e556cad760c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 0}
+  _rigidbody: {fileID: 0}
 --- !u!1 &1223260423
 GameObject:
   m_ObjectHideFlags: 0
@@ -5254,6 +5284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1223260424}
+  - component: {fileID: 1223260425}
   m_Layer: 0
   m_Name: Chase
   m_TagString: Untagged
@@ -5276,6 +5307,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 931640041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1223260425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223260423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fa47a34f675d942b9fee0301f3e3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 0}
+  _rigidbody: {fileID: 0}
 --- !u!1 &1406196384
 GameObject:
   m_ObjectHideFlags: 0
